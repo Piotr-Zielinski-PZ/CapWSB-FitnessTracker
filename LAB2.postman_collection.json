@@ -1,0 +1,207 @@
+{
+	"info": {
+		"_postman_id": "51309458-ef6a-4f94-afad-9e596df1ce86",
+		"name": "LAB2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39601451"
+	},
+	"item": [
+		{
+			"name": "localhost:6969/v1/users/simple",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:6969/v1/users/simple",
+					"host": [
+						"localhost"
+					],
+					"port": "6969",
+					"path": [
+						"v1",
+						"users",
+						"simple"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:6969/v1/users/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:6969/v1/users/1",
+					"host": [
+						"localhost"
+					],
+					"port": "6969",
+					"path": [
+						"v1",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST localhost:6969/v1/users/simple",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"firstName\":\"Thomas\",\n\"lastName\":\"Schulz\",\n\"birthdate\":\"2000-12-12\",\n\"email\":\"ts@gmail.com\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:6969/v1/users",
+					"host": [
+						"localhost"
+					],
+					"port": "6969",
+					"path": [
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE localhost:6969/v1/users/11",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"firstName\":\"Thomas\",\n\"lastName\":\"Schulz\",\n\"birthdate\":\"2000-12-12\",\n\"email\":\"ts@gmail.com\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:6969/v1/users/11",
+					"host": [
+						"localhost"
+					],
+					"port": "6969",
+					"path": [
+						"v1",
+						"users",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:6969/v1/users/email?email=Emma.Johnson@domain.com",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:6969/v1/users/email?email=Emma.Johnson@domain.com",
+					"host": [
+						"localhost"
+					],
+					"port": "6969",
+					"path": [
+						"v1",
+						"users",
+						"email"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "Emma.Johnson@domain.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:6969/v1/users/older/1996-11-08",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:6969/v1/users/older/1996-11-08",
+					"host": [
+						"localhost"
+					],
+					"port": "6969",
+					"path": [
+						"v1",
+						"users",
+						"older",
+						"1996-11-08"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT localhost:6969/v1/users/2",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"Nathan.Taylor@domain.com\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:6969/v1/users/2",
+					"host": [
+						"localhost"
+					],
+					"port": "6969",
+					"path": [
+						"v1",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
