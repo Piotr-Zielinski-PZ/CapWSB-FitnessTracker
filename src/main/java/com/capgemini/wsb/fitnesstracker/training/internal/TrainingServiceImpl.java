@@ -1,24 +1,29 @@
 package com.capgemini.wsb.fitnesstracker.training.internal;
 
-import com.capgemini.wsb.fitnesstracker.training.api.TrainingProvider;
-
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
-import com.capgemini.wsb.fitnesstracker.training.api.TrainingNotFoundException;
-
+import com.capgemini.wsb.fitnesstracker.training.api.TrainingProvider;
+import com.capgemini.wsb.fitnesstracker.user.api.UserProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.List;
-
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
-class TrainingServiceImpl implements TrainingProvider {
+public class TrainingServiceImpl implements TrainingProvider {
 
     private final TrainingRepository trainingRepository;
+    private final UserProvider userProvider;
+    private final TrainingMapper trainingMapper;
+
+    @Override
+    public Optional<Training> getTraining(final Long trainingId) {
+        return trainingRepository.findById(trainingId);
+    }
 
     @Override
     public List<Training> findAllTrainings() {
@@ -26,30 +31,35 @@ class TrainingServiceImpl implements TrainingProvider {
     }
 
     @Override
-    public List<Training> findTrainingsByUser(Long userId) {
-        return trainingRepository.findTrainingsByUser(userId);
+    public List<Training> findAllTrainingsByUserId(Long userId) {
+        return trainingRepository.findByUserId(userId);
     }
 
     @Override
-    public List<Training> findCompletedTrainingsAfter(LocalDate date) {
-        return trainingRepository.findCompletedTrainingsAfter(date);
+    public List<Training> findTrainingsAfter(LocalDate date) {
+        return trainingRepository.findByEndTimeAfter(date.atStartOfDay());
     }
 
     @Override
-    public List<Training> findTrainingsByActivity(ActivityType activityType) {
-        return trainingRepository.findTrainingsByActivity(activityType);
+    public List<Training> findTrainingsByActivityType(ActivityType type) {
+        return trainingRepository.findByActivityType(type);
     }
 
     @Override
     public Training createTraining(Training training) {
+        if (training.getId() != null) {
+            throw new IllegalArgumentException("Training has already DB ID");
+        }
+
         return trainingRepository.save(training);
     }
 
     @Override
-    public Training updateTraining(Long id, Training training) {
-        if (!trainingRepository.existsById(id)) {
-            throw new TrainingNotFoundException(id);
+    public Training updateTraining(Training training) {
+        if (training.getId() == null) {
+            throw new IllegalArgumentException("Missing training with this ID");
         }
         return trainingRepository.save(training);
     }
+
 }
